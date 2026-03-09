@@ -1,0 +1,46 @@
+# Виртуальное окружение
+venv/
+collaboration_env/
+env/
+ENV/
+
+# База данных
+*.sqlite3
+*.db
+
+# Файлы с секретами
+.env
+*.env
+
+# Сборки и кэш
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.python-version
+staticfiles/
+media/
+media/avatars/
+media/event_covers/
+media/project_documents/
+media/comment_attachments/
+media/chat_attachments/
+
+# Фронтенд
+frontend/node_modules/
+frontend/build/
+frontend/package-lock.json
+frontend/.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Логи
+*.log

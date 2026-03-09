@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение в проект</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #284b63 0%, #3c6e71 50%, #58b6b9 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .content {
+            padding: 30px;
+        }
+        .sender-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        .sender-avatar {
+            width: 60px;
+            height: 60px;
+            background-color: #3c6e71;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .project-card {
+            background-color: #f0f7f7;
+            border: 1px solid #d0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .project-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #284b63;
+            margin: 0 0 10px;
+        }
+        .role-chip {
+            display: inline-block;
+            background-color: #e8f0fe;
+            color: #3c6e71;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        .message-box {
+            background-color: #fff9e6;
+            border-left: 4px solid #cea569;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .button {
+            display: inline-block;
+            background-color: #3c6e71;
+            color: white;
+            text-decoration: none;
+            padding: 14px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: background-color 0.3s;
+        }
+        .button.secondary {
+            background-color: #95a5a6;
+        }
+        .button:hover {
+            background-color: #284b63;
+        }
+        .footer {
+            padding: 20px 30px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #888;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤝 Приглашение в проект</h1>
+        </div>
+
+        <div class="content">
+            <div class="sender-info">
+                <div class="sender-avatar">
+                    {{ sender.first_name|first|default:"П" }}{{ sender.last_name|first|default:"" }}
+                </div>
+                <div>
+                    <h3 style="margin: 0;">{{ sender.get_full_name|default:sender.email }}</h3>
+                    <p style="margin: 5px 0 0; color: #666;">приглашает вас к сотрудничеству</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2 class="project-title">{{ project.title }}</h2>
+                <p><strong>Тип проекта:</strong> {{ project.get_project_type_display }}</p>
+                {% if project.scientific_field %}
+                <p><strong>Научная область:</strong> {{ project.scientific_field }}</p>
+                {% endif %}
+                <p><strong>Предлагаемая роль:</strong> <span class="role-chip">{{ role }}</span></p>
+            </div>
+
+            {% if message %}
+            <div class="message-box">
+                <strong>Сообщение от {{ sender.first_name }}:</strong>
+                <p style="margin-top: 10px;">{{ message|linebreaksbr }}</p>
+            </div>
+            {% endif %}
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="{{ accept_url }}" class="button">✅ Посмотреть приглашение</a>
+            </div>
+
+            <p style="color: #666; font-size: 14px; text-align: center;">
+                Вы можете принять или отклонить приглашение в разделе "Мои приглашения".
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>
+                Это приглашение отправлено через платформу "Научная коллаборация".<br>
+                Если вы не ожидали этого письма, просто проигнорируйте его.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
